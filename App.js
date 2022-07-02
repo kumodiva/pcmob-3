@@ -11,14 +11,16 @@ function HomeScreen({ navigation }) {
 
  function renderItem({ item }) {
    return (
-     <TouchableOpacity onPress={()=> navigation.navigate("Details")}>
+     <TouchableOpacity onPress={()=> navigation.navigate("Details", item)}>
        <BlockRGB red={item.red} green={item.green} blue={item.blue} />
      </TouchableOpacity>
    );
  }
+
  function resetColors() {
   setColorArray([ ]);
 }
+
  function addColor() {
    setColorArray([
      ...colorArray,
@@ -50,8 +52,16 @@ function HomeScreen({ navigation }) {
  );
 }
 
-function DetailsScreen({ }) {
-  return<Text>Details Screen</Text>
+function DetailsScreen({route}) {
+  const {red,green,blue} =route.params;
+  return(
+    <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex: 1}}>
+       <Text style={styles.detailText}>Red: {red}</Text>
+       <Text style={styles.detailText}>Green: {green}</Text>
+       <Text style={styles.detailText}>Blue: {blue}</Text>
+
+    </View>
+  );
 }
 
 const Stack = createStackNavigator();
