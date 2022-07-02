@@ -38,7 +38,7 @@ return (
     >
       <Text style={{ color: "red" }}>Add colour</Text>
       </TouchableOpacity>
-    <FlatList style={styles.list} data={colors} renderItem={renderItem} />
+    <FlatList style={styles.list} data={colorArray} renderItem={renderItem} />
   </View>
 );
 
