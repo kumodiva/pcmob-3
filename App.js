@@ -18,15 +18,20 @@ import BlockRGB from "./components/BlockRGB";
    return <BlockRGB red={item.red} green={item.green} blue={item.blue} />;
  }
 
+ function resetColors() {
+  setColorArray([ ]);
+}
+
  function addColor() {
   setColorArray([
-    ...colorArray,
     {
       red: Math.floor(Math.random() * 256),
       green: Math.floor(Math.random() * 256),
       blue: Math.floor(Math.random() * 256),
       id: `${colorArray.length}`,
     },
+    ...colorArray,
+
   ]);
 }
 
@@ -37,6 +42,13 @@ return (
       onPress={addColor}
     >
       <Text style={{ color: "red" }}>Add colour</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+      style={{ height: 40, justifyContent: "center" }}
+      onPress={resetColors}
+    >
+      <Text style={{ color: "red" }}>Reset colour</Text>
       </TouchableOpacity>
     <FlatList style={styles.list} data={colorArray} renderItem={renderItem} />
   </View>
@@ -51,6 +63,7 @@ export default function App() {
    <NavigationContainer>
      <Stack.Navigator>
        <Stack.Screen name="Color List" component={HomeScreen} />
+       <Stack.Screen name="Details" component={DetailsScreen} />
      </Stack.Navigator>
    </NavigationContainer>
  );
